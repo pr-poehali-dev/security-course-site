@@ -3,62 +3,100 @@ import { Shield } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="border-t bg-background">
-      <div className="container px-4 py-8 md:py-12 md:px-6">
-        <div className="flex flex-col md:flex-row justify-between gap-8">
-          <div className="flex flex-col gap-2">
+    <footer className="bg-secondary py-12 md:py-16">
+      <div className="container">
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
+          <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <Shield className="h-5 w-5 text-primary" />
-              <span className="text-lg font-bold">ОхранаКурс</span>
+              <Shield className="h-6 w-6 text-primary" />
+              <span className="text-xl font-bold">ОхранаКурс</span>
             </div>
             <p className="text-muted-foreground max-w-xs">
-              Профессиональная платформа для обучения и аттестации сотрудников охранных предприятий
+              Лицензированный центр обучения охранников с официальной аккредитацией
+            </p>
+            <p className="text-sm text-muted-foreground">
+              © {new Date().getFullYear()} ОхранаКурс. Все права защищены.
             </p>
           </div>
           
-          <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
-            <div className="space-y-3">
-              <h4 className="font-medium">Платформа</h4>
-              <ul className="space-y-2">
-                <li><Link to="/" className="text-muted-foreground hover:text-foreground">Главная</Link></li>
-                <li><Link to="/courses" className="text-muted-foreground hover:text-foreground">Курсы</Link></li>
-                <li><Link to="/testing" className="text-muted-foreground hover:text-foreground">Тестирование</Link></li>
-              </ul>
-            </div>
-            
-            <div className="space-y-3">
-              <h4 className="font-medium">Поддержка</h4>
-              <ul className="space-y-2">
-                <li><Link to="/faq" className="text-muted-foreground hover:text-foreground">Частые вопросы</Link></li>
-                <li><Link to="/contact" className="text-muted-foreground hover:text-foreground">Связаться с нами</Link></li>
-                <li><Link to="/help" className="text-muted-foreground hover:text-foreground">Помощь</Link></li>
-              </ul>
-            </div>
-            
-            <div className="space-y-3 col-span-2 md:col-span-1">
-              <h4 className="font-medium">Контакты</h4>
-              <ul className="space-y-2">
-                <li className="text-muted-foreground">info@okhranakurs.ru</li>
-                <li className="text-muted-foreground">+7 (495) 123-45-67</li>
-                <li className="text-muted-foreground">Москва, ул. Примерная, д. 123</li>
-              </ul>
-            </div>
+          <div>
+            <h3 className="font-semibold mb-4">Курсы и обучение</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/courses" className="text-muted-foreground hover:text-primary transition-colors">
+                  Все курсы
+                </Link>
+              </li>
+              <li>
+                <Link to="/course/4" className="text-muted-foreground hover:text-primary transition-colors">
+                  4 разряд
+                </Link>
+              </li>
+              <li>
+                <Link to="/course/5" className="text-muted-foreground hover:text-primary transition-colors">
+                  5 разряд
+                </Link>
+              </li>
+              <li>
+                <Link to="/course/6" className="text-muted-foreground hover:text-primary transition-colors">
+                  6 разряд
+                </Link>
+              </li>
+              <li>
+                <Link to="/testing" className="text-muted-foreground hover:text-primary transition-colors">
+                  Тестирование
+                </Link>
+              </li>
+            </ul>
           </div>
-        </div>
-        
-        <div className="mt-8 border-t pt-8">
-          <div className="flex flex-col md:flex-row justify-between gap-4">
-            <p className="text-sm text-muted-foreground">
-              © 2025 ОхранаКурс. Все права защищены.
-            </p>
-            <div className="flex gap-4">
-              <Link to="/privacy" className="text-sm text-muted-foreground hover:text-foreground">
-                Политика конфиденциальности
-              </Link>
-              <Link to="/terms" className="text-sm text-muted-foreground hover:text-foreground">
-                Условия использования
-              </Link>
-            </div>
+          
+          <div>
+            <h3 className="font-semibold mb-4">Информация</h3>
+            <ul className="space-y-3">
+              <li>
+                <Link to="/about" className="text-muted-foreground hover:text-primary transition-colors">
+                  О центре
+                </Link>
+              </li>
+              <li>
+                <Link to="/licenses" className="text-muted-foreground hover:text-primary transition-colors">
+                  Лицензии
+                </Link>
+              </li>
+              <li>
+                <Link to="/faq" className="text-muted-foreground hover:text-primary transition-colors">
+                  Частые вопросы
+                </Link>
+              </li>
+              <li>
+                <Link to="/privacy" className="text-muted-foreground hover:text-primary transition-colors">
+                  Политика конфиденциальности
+                </Link>
+              </li>
+              <li>
+                <Link to="/terms" className="text-muted-foreground hover:text-primary transition-colors">
+                  Условия использования
+                </Link>
+              </li>
+            </ul>
+          </div>
+          
+          <div>
+            <h3 className="font-semibold mb-4">Контакты</h3>
+            <ul className="space-y-3">
+              <li className="text-muted-foreground">
+                Телефон: <a href="tel:+74951234567" className="hover:text-primary transition-colors">+7 (495) 123-45-67</a>
+              </li>
+              <li className="text-muted-foreground">
+                Email: <a href="mailto:info@ohrankurs.ru" className="hover:text-primary transition-colors">info@ohrankurs.ru</a>
+              </li>
+              <li className="text-muted-foreground">
+                Адрес: г. Москва, ул. Охранная, д. 15
+              </li>
+              <li className="text-muted-foreground">
+                Время работы: Пн-Пт с 9:00 до 18:00
+              </li>
+            </ul>
           </div>
         </div>
       </div>

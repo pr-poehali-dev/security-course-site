@@ -1,93 +1,105 @@
+import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
+import { Clock, Users, BookOpen, Shield } from "lucide-react";
+import { Link } from "react-router-dom";
 
-interface Course {
-  id: number;
-  title: string;
-  description: string;
-  level: string;
-  duration: string;
-  price: number;
-  imageSrc: string;
-}
-
-const courses: Course[] = [
+const courses = [
   {
     id: 1,
-    title: "Базовый курс для охранников",
-    description: "Основы профессиональной подготовки для начинающих специалистов охранной деятельности",
-    level: "Начальный",
+    title: "Базовый курс охранника 4 разряда",
+    description: "Начальная подготовка для работы в сфере охраны без права ношения оружия",
     duration: "40 часов",
-    price: 7500,
-    imageSrc: "https://images.unsplash.com/photo-1551190822-a9333d879b1f?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    level: "Начальный",
+    students: 1240,
+    image: "https://images.unsplash.com/photo-1608755728617-aefab37d2ced?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    badge: "Популярный",
+    price: "5 900 ₽"
   },
   {
     id: 2,
-    title: "Курс повышения квалификации",
-    description: "Углубленное изучение тактики охраны и современных средств защиты для специалистов с опытом",
-    level: "Продвинутый",
-    duration: "72 часа",
-    price: 12000,
-    imageSrc: "https://images.unsplash.com/photo-1595433707802-6b2626ef1c91?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    title: "Курс охранника 5 разряда",
+    description: "Подготовка специалистов с правом использования специальных средств",
+    duration: "60 часов",
+    level: "Средний",
+    students: 860,
+    image: "https://images.unsplash.com/photo-1531973576160-7125cd663d86?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    price: "9 800 ₽"
   },
   {
     id: 3,
-    title: "Подготовка к аттестации",
-    description: "Интенсивный курс для подготовки к прохождению официальной аттестации и получения лицензии",
-    level: "Специализированный",
-    duration: "24 часа",
-    price: 5000,
-    imageSrc: "https://images.unsplash.com/photo-1603201667141-5a2d4c673378?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3"
+    title: "Профессиональный курс 6 разряда",
+    description: "Полный курс для специалистов с правом ношения оружия",
+    duration: "80 часов",
+    level: "Продвинутый",
+    students: 645,
+    image: "https://images.unsplash.com/photo-1565528252780-bddda3160771?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80",
+    badge: "Сертификация",
+    price: "14 500 ₽"
   }
 ];
 
 const CoursesList = () => {
   return (
-    <section className="py-16 sm:py-20">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Наши курсы</h2>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-              Выберите подходящую программу обучения для повышения вашей квалификации
+    <section className="py-16 md:py-24">
+      <div className="container">
+        <div className="flex flex-col md:flex-row items-start md:items-center justify-between mb-12 gap-4">
+          <div>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-2">
+              Наши курсы
+            </h2>
+            <p className="text-muted-foreground max-w-2xl">
+              Выберите программу обучения, соответствующую вашим профессиональным целям
             </p>
           </div>
+          <Button asChild variant="outline" className="shrink-0">
+            <Link to="/courses">Все курсы</Link>
+          </Button>
         </div>
-        <div className="grid gap-6 sm:grid-cols-2 md:gap-8 lg:grid-cols-3 mt-10">
+        
+        <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-3">
           {courses.map((course) => (
-            <Card key={course.id} className="flex flex-col h-full overflow-hidden">
-              <div className="aspect-video w-full overflow-hidden">
-                <img 
-                  src={course.imageSrc} 
-                  alt={course.title} 
-                  className="object-cover w-full h-full hover:scale-105 transition-transform duration-300"
+            <Card key={course.id} className="overflow-hidden transition-all hover-scale">
+              <div className="aspect-video relative overflow-hidden">
+                <img
+                  src={course.image}
+                  alt={course.title}
+                  className="h-full w-full object-cover transition-transform duration-300 hover:scale-105"
                 />
+                {course.badge && (
+                  <Badge className="absolute right-3 top-3 bg-primary">{course.badge}</Badge>
+                )}
               </div>
               <CardHeader>
-                <div className="flex justify-between items-start">
-                  <CardTitle>{course.title}</CardTitle>
-                  <Badge variant="outline">{course.level}</Badge>
-                </div>
+                <CardTitle>{course.title}</CardTitle>
                 <CardDescription>{course.description}</CardDescription>
               </CardHeader>
-              <CardContent className="flex-grow">
-                <div className="flex items-center justify-between">
+              <CardContent>
+                <div className="grid grid-cols-2 gap-4 text-sm">
                   <div className="flex items-center gap-2">
                     <Clock className="h-4 w-4 text-muted-foreground" />
-                    <span className="text-sm text-muted-foreground">{course.duration}</span>
+                    <span>{course.duration}</span>
                   </div>
-                  <div className="text-lg font-semibold">{course.price} ₽</div>
+                  <div className="flex items-center gap-2">
+                    <Users className="h-4 w-4 text-muted-foreground" />
+                    <span>{course.students} учеников</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <BookOpen className="h-4 w-4 text-muted-foreground" />
+                    <span>{course.level}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Shield className="h-4 w-4 text-muted-foreground" />
+                    <span>Сертификат</span>
+                  </div>
                 </div>
               </CardContent>
-              <CardFooter>
-                <Button className="w-full">Подробнее о курсе</Button>
+              <CardFooter className="flex justify-between items-center">
+                <div className="text-lg font-semibold">{course.price}</div>
+                <Button>Подробнее</Button>
               </CardFooter>
             </Card>
           ))}
-        </div>
-        <div className="flex justify-center mt-10">
-          <Button variant="outline" size="lg">Показать все курсы</Button>
         </div>
       </div>
     </section>
@@ -95,5 +107,3 @@ const CoursesList = () => {
 };
 
 export default CoursesList;
-
-import { Clock } from "lucide-react";

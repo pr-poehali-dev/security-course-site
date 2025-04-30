@@ -1,71 +1,77 @@
-import { Card, CardContent, CardHeader, CardFooter } from "@/components/ui/card";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Card, CardContent, CardFooter } from "@/components/ui/card";
 import { Star } from "lucide-react";
 
 const testimonials = [
   {
     id: 1,
-    name: "Александр Петров",
-    role: "Руководитель охранного предприятия",
-    content: "Отличный современный портал для обучения. Наши сотрудники прошли курсы и получили все необходимые документы для работы. Особенно понравилась простота использования и качество учебных материалов.",
-    rating: 5,
-    avatar: "АП"
+    content: "Отличная платформа для обучения охранников. Удобно, что можно проходить курсы в любое время. Успешно сдал экзамен на 4 разряд с первого раза.",
+    author: "Александр Петров",
+    role: "Охранник, 4 разряд",
+    avatar: "AP",
+    rating: 5
   },
   {
     id: 2,
-    name: "Елена Иванова",
-    role: "Сотрудник ЧОП",
-    content: "Прошла курс повышения квалификации на этой платформе. Информация подается структурированно и понятно. Тесты помогли закрепить знания, а сертификат получила сразу после окончания курса.",
-    rating: 5,
-    avatar: "ЕИ"
+    content: "Проходил повышение квалификации на 6 разряд. Материалы актуальные, тесты помогли хорошо подготовиться к экзамену. Рекомендую коллегам.",
+    author: "Михаил Соколов",
+    role: "Начальник охраны",
+    avatar: "МС",
+    rating: 5
   },
   {
     id: 3,
-    name: "Дмитрий Соколов",
-    role: "Начальник службы безопасности",
-    content: "Организовал обучение для всего отдела. Удобная система позволила отслеживать прогресс каждого сотрудника. Материалы актуальны и соответствуют современным требованиям к охранной деятельности.",
-    rating: 4,
-    avatar: "ДС"
+    content: "Отличный курс для начинающих. Никогда раньше не работал в охране, но благодаря понятным материалам смог освоить профессию и получить 4 разряд.",
+    author: "Дмитрий Иванов",
+    role: "Охранник торгового центра",
+    avatar: "ДИ",
+    rating: 4
   }
 ];
 
 const Testimonials = () => {
   return (
-    <section className="py-16 sm:py-20 bg-muted/50">
-      <div className="container px-4 md:px-6">
-        <div className="flex flex-col items-center justify-center space-y-4 text-center">
-          <div className="space-y-2">
-            <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">Отзывы о наших курсах</h2>
-            <p className="max-w-[700px] text-muted-foreground md:text-xl/relaxed">
-              Мнения специалистов, прошедших обучение на нашей платформе
-            </p>
-          </div>
+    <section className="bg-secondary/30 py-16 md:py-24">
+      <div className="container">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold tracking-tight sm:text-4xl mb-4">
+            Отзывы наших выпускников
+          </h2>
+          <p className="mx-auto max-w-2xl text-muted-foreground">
+            Более 5000 специалистов успешно прошли обучение на нашей платформе и получили официальные разряды
+          </p>
         </div>
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-3 mt-10">
+        
+        <div className="grid gap-8 md:grid-cols-3">
           {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="h-full">
-              <CardHeader className="pb-2">
-                <div className="flex items-center">
-                  {Array(5).fill(0).map((_, i) => (
-                    <Star 
-                      key={i} 
-                      className={`h-4 w-4 ${i < testimonial.rating ? 'text-yellow-500 fill-yellow-500' : 'text-gray-300'}`} 
+            <Card key={testimonial.id} className="bg-card">
+              <CardContent className="pt-6">
+                <div className="flex mb-4">
+                  {[...Array(5)].map((_, i) => (
+                    <Star
+                      key={i}
+                      className={`h-5 w-5 ${
+                        i < testimonial.rating ? "fill-primary text-primary" : "text-muted"
+                      }`}
                     />
                   ))}
                 </div>
-              </CardHeader>
-              <CardContent className="pt-2">
-                <p className="text-muted-foreground mb-6">"{testimonial.content}"</p>
+                <p className="mb-6 text-card-foreground">{testimonial.content}</p>
+              </CardContent>
+              <CardFooter>
                 <div className="flex items-center gap-4">
                   <Avatar>
-                    <AvatarFallback>{testimonial.avatar}</AvatarFallback>
+                    <AvatarImage src="" alt={testimonial.author} />
+                    <AvatarFallback className="bg-primary/10 text-primary">
+                      {testimonial.avatar}
+                    </AvatarFallback>
                   </Avatar>
                   <div>
-                    <p className="font-medium">{testimonial.name}</p>
+                    <p className="font-medium">{testimonial.author}</p>
                     <p className="text-sm text-muted-foreground">{testimonial.role}</p>
                   </div>
                 </div>
-              </CardContent>
+              </CardFooter>
             </Card>
           ))}
         </div>
